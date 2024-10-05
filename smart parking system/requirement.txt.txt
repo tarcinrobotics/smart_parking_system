@@ -1,0 +1,16 @@
+#Software Requirement
+
+Python 3.11.3
+cvzone==1.6.1
+opencv-python==4.9.0.80
+pillow==10.2.0
+pickleshare==0.7.5
+numpy==1.23.5
+
+#Hardware Requirement
+Web-cam
+Form Sheet
+Arduino UNO
+Servo Motor
+IR Sensor
+Traffic Signal

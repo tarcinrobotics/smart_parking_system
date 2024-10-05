@@ -1,0 +1,39 @@
+// Traffic Signal Code for Arduino Uno
+
+// Define pin numbers for traffic light LEDs
+const int redPin = 12;
+const int yellowPin = 11;
+const int greenPin = 10;
+
+void setup() {
+  // Initialize the pin modes
+  pinMode(redPin, OUTPUT);
+  pinMode(yellowPin, OUTPUT);
+  pinMode(greenPin, OUTPUT);
+}
+
+void loop() {
+  // Red light
+  digitalWrite(redPin, HIGH);
+  digitalWrite(yellowPin, LOW);
+  digitalWrite(greenPin, LOW);
+  delay(5000); // Wait for 5 seconds
+
+  // Red and Yellow lights (transition)
+  digitalWrite(redPin, HIGH);
+  digitalWrite(yellowPin, HIGH);
+  digitalWrite(greenPin, LOW);
+  delay(2000); // Wait for 2 seconds
+
+  // Green light
+  digitalWrite(redPin, LOW);
+  digitalWrite(yellowPin, LOW);
+  digitalWrite(greenPin, HIGH);
+  delay(5000); // Wait for 5 seconds
+
+  // Yellow light (transition)
+  digitalWrite(redPin, LOW);
+  digitalWrite(yellowPin, HIGH);
+  digitalWrite(greenPin, LOW);
+  delay(2000); // Wait for 2 seconds
+}

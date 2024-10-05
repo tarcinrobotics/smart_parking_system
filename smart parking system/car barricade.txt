@@ -1,0 +1,55 @@
+#include <Servo.h>
+
+// Define the pins for the IR sensors
+const int irSensorPinLeft = 2; // Change this to match your setup
+const int irSensorPinRight = 3; // Change this to match your setup
+
+// Define the pin for the servo motor
+const int servoPin = 5; // Change this to match your setup
+
+// Define servo angles for raised and lowered positions
+const int raisedAngle = 20; // Angle for raising the barrier
+const int loweredAngle = 90; // Angle for lowering the barrier
+
+// Create a servo object
+Servo barrierServo;
+
+void setup() {
+  // Initialize serial communication
+  Serial.begin(9600);
+
+  // Attach the servo to its pin
+  barrierServo.attach(servoPin);
+
+  // Set the IR sensor pins as inputs
+  pinMode(irSensorPinLeft, INPUT);
+  pinMode(irSensorPinRight, INPUT);
+  
+  // Initialize the barrier in the lowered position
+  barrierServo.write(loweredAngle);
+}
+
+void loop() {
+  // Read the IR sensor values
+  int irSensorValueLeft = digitalRead(irSensorPinLeft);
+  int irSensorValueRight = digitalRead(irSensorPinRight);
+
+  // If either sensor detects a car (LOW signal), raise the barrier
+  if (irSensorValueLeft == LOW || irSensorValueRight == LOW) {
+    raiseBarrier();
+    Serial.println("Barrier raised");
+    delay(5000); // Delay to keep the barrier raised for a few seconds
+    lowerBarrier(); // Lower the barrier after delay
+    Serial.println("Barrier lowered");
+  }
+
+  // Add additional code here if needed
+}
+
+void raiseBarrier() {
+  barrierServo.write(raisedAngle); // Move servo to raise the barrier
+}
+
+void lowerBarrier() {
+  barrierServo.write(loweredAngle); // Move servo to lower the barrier
+}
